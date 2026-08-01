@@ -1,0 +1,13 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Intersection {
+    private int id;
+
+    private List<Road> roads;
+
+    public Intersection(int id){
+        this.id = id;
+        this.roads =  new ArrayList<>();
+    }
+}
