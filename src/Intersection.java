@@ -10,4 +10,8 @@ public class Intersection {
         this.id = id;
         this.roads =  new ArrayList<>();
     }
+
+    public void addRoad(Road road){
+        this.roads.add(road);
+    }
 }
