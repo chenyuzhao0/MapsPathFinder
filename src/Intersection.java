@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class Intersection {
@@ -13,5 +14,12 @@ public class Intersection {
 
     public void addRoad(Road road){
         this.roads.add(road);
+    }
+
+    public List<Road> getRoads() {
+        return roads;
+    }
+    public int getId(){
+        return id;
     }
 }

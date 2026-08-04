@@ -11,4 +11,18 @@ public class Road {
         this.start = start;
         this.end = end;
     }
+
+    public Intersection getEnd() {
+        return end;
+    }
+    public Intersection getStart(){
+        return start;
+    }
+    public int getDistanceInMeters(){
+        return distanceInMeters;
+    }
+    public int getSeconds(){
+        return seconds;
+    }
+
 }
