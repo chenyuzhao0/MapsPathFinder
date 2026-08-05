@@ -1,3 +1,5 @@
+package main;
+
 public class Road {
     private int seconds;
 

@@ -1,8 +1,9 @@
-import java.sql.Array;
+package main;
+
 import java.util.*;
 
 public class MapGraph {
-    private HashMap<Integer,Intersection> graph;
+    private HashMap<Integer, Intersection> graph;
 
     public MapGraph(){
         this.graph = new HashMap<>();
