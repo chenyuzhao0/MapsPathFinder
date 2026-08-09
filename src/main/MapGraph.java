@@ -37,38 +37,58 @@ public class MapGraph {
 
     //the Dijkstra algorithm method to know the fastest way
     public List<Intersection> findFastestRoute(Intersection start, Intersection end){
-        //
+        //to know the total distance we have already taken
         HashMap<Intersection,Integer> distances = new HashMap<>();
-
+        //to remember the intersections we went, so register the current and the last
         HashMap<Intersection,Intersection> previousNodes = new HashMap<>();
-
+        //we make a queue so the lowest node given to the comparator is at the first position
         PriorityQueue<Intersection> queue = new PriorityQueue<>(
                 Comparator.comparingInt(node->distances.get(node)));
-
+        //initialize the start point distance to 0
         distances.put(start, 0);
+        //adding in the queue the first intersection where all begins
         queue.add(start);
-
+        //move through the queue until the queue becomes empty starting with the lowest distance
         while(!queue.isEmpty()){
+            //the fastest intersection of the queue and then we remove it
             Intersection current = queue.poll();
+            //loop to go throw the roads that the intersection has inside it
             for(int i = 0; i<current.getRoads().size();i++) {
+                //to know in which road we are
                 Road road = current.getRoads().get(i);
+                //to know to which intersection we can reach at the end of the current road we are
                 Intersection neighbor = road.getEnd();
+                //calculating the time adding the current time we have till now
                 int proposedTime = distances.get(current) + road.getSeconds();
+                //we have to check if this the time is registered or if the time we have
+                //is bigger than the time we calculated now
                 if (!distances.containsKey((neighbor)) || proposedTime < distances.get(neighbor)) {
+                    //to the time we have accumulated, we register the
+                    //intersection we are and the time it takes us
                     distances.put(neighbor, proposedTime);
+                    //register the new node we are currently and the previous one
                     previousNodes.put(neighbor, current);
+                    //since it is shorter time, we add the node to the queue
                     queue.add(neighbor);
                 }
             }
         }
-
+        //we have the path made, but now we have to know where did we go
+        //so we have to go backwards to the path we just made
         List<Intersection> path = new ArrayList<>();
+        //we start the cursor at the end
         Intersection tracker = end;
         while(tracker != null){
+            //we are adding all the nodes we went
             path.add(tracker);
+            //we move the cursor backwards through all the
+            //nodes we went registered in the previousNodes
             tracker = previousNodes.get(tracker);
         }
+        //now the path we have starts from the end, but we need to
+        //know how to go in the start so we reverse it
         Collections.reverse(path);
+        //the leet the user see the entire fastest route to the destination
         return path;
     }
 }
